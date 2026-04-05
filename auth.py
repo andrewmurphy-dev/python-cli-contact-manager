@@ -33,7 +33,7 @@ def search_contacts():
 
 
 
-
+def delete_contact():
 
 
 
