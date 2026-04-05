@@ -32,7 +32,14 @@ def search_contacts():
             print("not found")
 
 
-
+def delete_contact():
+    print("welcome to delete contact\n")
+    name = input("please enter the username you want to delete: ")
+    if name in contacts:
+        del contacts[name]
+        print("contact deleted")
+    else:
+        print("not found")
 
 
 
