@@ -32,7 +32,6 @@ def search_contacts():
             print("not found")
 
 
-#we need to write this better cause looping will create messy data and it will not look neat !
 
 
 
