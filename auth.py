@@ -22,7 +22,16 @@ def display_contacts():
 
 
     #day 3
-
+def search_contacts():
+    print("wecome to search menu\n")
+    email = input("menu: please enter the email address associated with user: ")
+    for name, value in contacts.items():
+        if email == value["email"]:
+            print("username:\n", name)
+            print("email:\n", value["email"])
+            print("phone:\n", value["phone"])
+        else:
+            print("not found")
 
 
 def delete_contact():
