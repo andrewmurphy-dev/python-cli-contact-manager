@@ -68,8 +68,11 @@ def update_contact():
                 print("contact updated")
 
 
-            elif choice == "2":
+             elif choice == "2":
                 new_email = input("please enter new email: ")
+                #this follows a different structure
+                value["email"] = new_email
+                print("email updated")
 
 
 
