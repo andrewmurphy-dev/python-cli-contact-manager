@@ -52,5 +52,12 @@ def update_contact():
             print("email:\n", value["email"])
             print("phone:\n", value["phone"])
 
+            print("what do you want to update?\n")
+            print("press 1: to update username")
+            print("press 2: to update email")
+            print("press 3: to update phone")
+
+            choice = input("please enter your choice: ")
+
 
 
