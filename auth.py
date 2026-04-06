@@ -43,6 +43,14 @@ def delete_contact():
     else:
         print("not found")
 
+def update_contact():
+    print("welcome to update contact\n")
+    email = input("type the email address associated with user: ")
+    for key, value in contacts.items():
+        if email == value["email"]:
+            print("username:\n", key)
+            print("email:\n", value["email"])
+            print("phone:\n", value["phone"])
 
 
 
