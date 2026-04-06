@@ -59,5 +59,17 @@ def update_contact():
 
             choice = input("please enter your choice: ")
 
+            if choice == "1":
+                new_username = input("please enter new username: ")
+
+                contacts[new_username] = contacts[name]
+                del contacts[name]
+
+                print("contact updated")
+
+
+            elif choice == "2":
+                new_email = input("please enter new email: ")
+
 
 
