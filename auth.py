@@ -76,3 +76,19 @@ def update_contact():
 
 
 
+            elif choice == "3":
+                new_phone = input("please enter new phone number: ")
+                value["phone"] = new_phone
+                print("phone updated")
+
+            else:
+                print("invalid choice")
+
+            break
+
+    else:
+        print("not found")
+
+
+
+
