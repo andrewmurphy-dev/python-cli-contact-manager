@@ -36,9 +36,7 @@ def cli_manager():
 
 
 
-        if user_inputt == "1":
-            print("menu: 1 selected")
-            add_contact()
+       
 
         if user_inputt == "2":
             print("menu: 2 selected")
