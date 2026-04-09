@@ -46,25 +46,40 @@ def cli_manager():
         else:
             print("invalid option")
 
-       
-
         if user_inputt == "2":
             print("menu: 2 selected")
             search_contacts()
+        elif user_inputt == "":
+            print("menu: option cannot be blank! try again !")
+
+        else:
+            print("invalid option")
 
         if user_inputt == "3":
             print("menu: 3 selected")
+        elif user_inputt == "":
+            print("menu: option cannot be blank! try again !")
+
+        else:
+            print("invalid option")
 
         if user_inputt == "4":
             print("menu: 4 selected")
+        elif user_inputt == "":
+            print("menu: option cannot be blank! try again !")
+
+        else:
+            print("invalid option")
+
 
         if user_inputt == "5":
             print("menu: 5 selected")
             display_contacts()
+        elif user_inputt == "":
+            print("menu: option cannot be blank! try again !")
 
-
-
-
+        else:
+            print("invalid option")
 
 
 
