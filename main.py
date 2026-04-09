@@ -51,7 +51,6 @@ def cli_manager():
             search_contacts()
         elif user_inputt == "":
             print("menu: option cannot be blank! try again !")
-
         else:
             print("invalid option")
 
