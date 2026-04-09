@@ -35,6 +35,16 @@ def cli_manager():
             break
 
 
+        
+
+        if user_inputt == "1":
+            print("menu: 1 selected")
+            add_contact()
+        elif user_inputt == "":
+            print("menu: option cannot be blank! try again !")
+
+        else:
+            print("invalid option")
 
        
 
