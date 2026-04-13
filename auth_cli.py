@@ -108,6 +108,21 @@ def update_contact():
 
 
 
+            if choice == "3":
+                new_phone = input("please enter new phone number: ").lower().strip()
+                value["phone"] = new_phone
+                print("phone updated")
+
+            elif choice == "":
+                print("menu: option cannot be blank! try again !")
+
+            else:
+                print("invalid choice")
+            break
+
+    
+
+
 
 
     else:
