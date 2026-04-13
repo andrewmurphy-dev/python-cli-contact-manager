@@ -85,6 +85,12 @@ def update_contact():
                 del contacts[name]
                 print("contact updated")
 
+            elif choice == "":
+                print("menu: option cannot be blank! try again !")
+                
+            else:
+                print("invalid option")
+
 
             elif choice == "2":
                 new_email = input("please enter new email: ")
