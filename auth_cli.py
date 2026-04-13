@@ -93,6 +93,22 @@ def update_contact():
 
 
 
+             if choice == "2":
+                new_email = input("please enter new email: ").lower().strip()
+                #this follows a different structure
+                value["email"] = new_email
+                print("email updated")
+
+
+            elif choice == "":
+                print("menu: option cannot be blank! try again !")
+
+            else:
+                print("invalid option")
+
+
+
+
 
 
             elif choice == "3":
