@@ -3,14 +3,21 @@ from storage_cli import contacts
 
 
 def add_contact():
+    print("welcome to add contact section!")
+
     name = input("Please enter your name: ").strip().lower()
     email = input("Please enter your email: ").strip().lower()
-    phone = input("Please enter your phone number: ").strip().lower()
+    phone = input("Please enter your phone number: ").strip()
 
-#what happens if the user types nothing ??
+    if name == "":
+        print("name cannot be blank")
+        return
 
     contacts[name] = {"email": email, "phone": phone}
+
+    print("contact added")
     print(contacts)
+
 
 
 #day 2
