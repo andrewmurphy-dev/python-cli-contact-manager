@@ -11,6 +11,18 @@ def load_manager():
         with open("contacts.json", "r", encoding="utf-8") as file:
             return json.load(file)
 
+    except FileNotFoundError:
+        print("no file found")
+        return {}
+
+    except json.JSONDecodeError:
+        print("error the file type is not json format")
+    return None
+
+
+
+
+
 
 
 
