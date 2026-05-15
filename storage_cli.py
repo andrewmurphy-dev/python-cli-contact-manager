@@ -6,6 +6,12 @@ def save_manager(contacts):
 
 
 
+def load_manager():
+    try:
+        with open("contacts.json", "r", encoding="utf-8") as file:
+            return json.load(file)
+
+
 
 
 
