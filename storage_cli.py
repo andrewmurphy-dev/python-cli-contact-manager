@@ -9,8 +9,7 @@ def save_manager(contacts):
 def load_manager():
     try:
         with open("contacts.json", "r", encoding="utf-8") as file:
-            contacts = json.load(file)
-            return contacts
+            return json.load(file)
 
     except FileNotFoundError:
         print("no file found")
