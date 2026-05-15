@@ -1,10 +1,11 @@
-#this is storage
+import json
 
-#so remember !
-# dictionary[key] = value
+def save_manager(contacts):
+    with open("contacts.json", "w", encoding="utf-8") as file:
+        json.dump(contacts, file, indent=4)
 
 
 
-contacts = {}
+
 
 
