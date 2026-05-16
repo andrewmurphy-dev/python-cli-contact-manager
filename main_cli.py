@@ -4,79 +4,45 @@ from auth_cli import add_contact,search_contacts,display_contacts
 
 def cli_manager():
     print("welcome to main menu\n")
-    name = input("Enter your name: ").strip().lower()
 
 
     while True:
-        cli_menu = (f"{name} please enter your choice: ").strip().lower()
-        print(cli_menu)
-        #press 1 to add contact
-        print("press 1: to add contacts\n")
-        #press 2 to search contact
-        print("press 2: to search contacts\n")
-        #press 3 to update contact
-        print("press 3: to update contacts\n")
-        #press 4 tp delete contact
-        print("press 4: to delete contacts\n")
-        #press 5 to show contacts
-        print("press 5: to display contacts\n")
-        # press 'exit to leave
-        print("press 6: to exit\n")
+        square_box("Main Menu", [
+            "1. add contacts",
+            "2. search contacts",
+            "3. update contacts",
+            "4. delete contacts"
+            "5. display contacts"
+            "type exit Logout"
+        ])
 
-        user_inputt = input("-->:  ").strip().lower()
-        if user_inputt == "exit":
-            print("goodbye")
-            break
+        option_text = input("enter a option: ").strip()
 
+        if option_text == "":
+            print("option cannot be empty!")
+            continue
 
+        try:
+            option = int(option_text)
 
-        if user_inputt == "1":
-            print("menu: 1 selected")
-            add_contact()
-        elif user_inputt == "":
-            print("menu: option cannot be blank! try again !")
+        except ValueError:
+            print("option must be a number!")
+            continue
 
-        else:
-            print("invalid option")
+        if option == "1":
+            #function call
 
+        elif option == "2":
+            #function call
 
+        elif option == "3":
+            #function call
 
-        if user_inputt == "2":
-            print("menu: 2 selected")
-            search_contacts()
-        elif user_inputt == "":
-            print("menu: option cannot be blank! try again !")
+        elif option == "4":
+            #function call
 
-        else:
-            print("invalid option")
-
-        if user_inputt == "3":
-            print("menu: 3 selected")
-        elif user_inputt == "":
-            print("menu: option cannot be blank! try again !")
-
-        else:
-            print("invalid option")
-
-        if user_inputt == "4":
-            print("menu: 4 selected")
-        elif user_inputt == "":
-            print("menu: option cannot be blank! try again !")
-
-        else:
-            print("invalid option")
-
-
-        if user_inputt == "5":
-            print("menu: 5 selected")
-            display_contacts()
-        elif user_inputt == "":
-            print("menu: option cannot be blank! try again !")
-
-        else:
-            print("invalid option")
-
-
+        elif option == "5":
+            #function call
 
 
 
