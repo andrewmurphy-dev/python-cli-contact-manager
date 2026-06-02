@@ -21,6 +21,8 @@ def load_manager():
 
 
 
+contacts = load_manager()
+
 
 #you forgot some things here
 #for some reason in another project u didnt put json.load(file) in stoage

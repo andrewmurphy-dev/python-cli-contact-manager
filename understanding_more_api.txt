@@ -1,0 +1,32 @@
+so something i realized when doing this project ! 
+
+1. 
+
+we need to validate the digit string format for phone number 
+
+we want it to be a digit string not a character string 
+
+
+so we used the built in function isdigit()
+
+
+for character in phone:
+if not character.isdit():
+print(character must be a digit)
+return 
+
+
+
+
+also i dont len(phone) <8:
+print(too short) 
+
+
+2. 
+
+so the next is 
+FastAPI reads the JSON body and creates the expense object from it, as long as correctstructure has matching fields like name and price.
+
+@app.post("/expenses")
+def add_expenses(expense: correctstructure):
+
