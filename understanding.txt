@@ -1,0 +1,89 @@
+
+#confusion 1
+#logic 
+
+so here i want to understand your logic if its correct or not !
+
+you wanted to put 
+
+number as a int, not a string ! 
+
+well more like 
+
+
+phone: int = Field(gt=1)
+
+but this is actually wrong ! 
+
+this is actually wrong !
+
+the reason being is that a number should be a string because we do not actually calculate it ! 
+
+phon enumbers are idnetifiers ! 
+
+this is the reason ! 
+
+
+
+
+
+#confusion 2 
+#logic 
+
+so your data is nested dictioanry ! 
+we do not ask that ! 
+
+we ask is the http request body gonna match the pydantic class?
+
+
+if so 
+
+
+@app.post("/contact")
+def update_contact(contact: pydantic class:
+
+
+
+
+confusion 3 
+## logic
+
+
+@app.post("/contacts")
+def add_contact(contact: ContactData):
+    #so here what do we want to do ?
+
+    #we want to send to save the data ! 
+    contact = save_manager()
+
+    #but first i feel like we need to verify it ! 
+    #im just wondering how we save it ! 
+
+    if not contact:
+        raise HTTPException(Status_code=404, detail="invalid data type!")
+    
+    contact = save_manager()
+
+    respone = {
+        
+    }
+
+how do we structure this ! 
+
+so here we call the load_manager 
+
+we also try to save it ! 
+
+whatever we send fron the http request body ! 
+we append it to the dictionary 
+
+depending on the datatype ! 
+
+
+then u must save it !
+
+
+you must then return a json message ! 
+
+this can be whatever you want ! 
+#does not need to be this complicated now ! 
