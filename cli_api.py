@@ -67,13 +67,6 @@ def upload_contact(contact: ContactData):
 
 
 
-@app.delete("contact/{contact_email}")
-def delete_contact()
-
-
-
-
-
 
 
 
