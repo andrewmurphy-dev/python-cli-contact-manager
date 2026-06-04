@@ -34,3 +34,29 @@ def add_expenses(expense: correctstructure):
 3. 
 
 we use try for the http request response 
+
+
+
+4. 
+
+do not forget that its called 
+
+raise_for_status ! 
+
+
+
+5.
+also dont forget the error validation ,please rememebr this ! 
+
+request.exceptions
+
+4 times 
+
+request.exceptions.ConnectionError:
+
+request.exceptions.HTTPerror as error:
+
+request.exceptions.RequestException
+
+except ValueError 
+
