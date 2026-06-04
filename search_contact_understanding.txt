@@ -1,0 +1,31 @@
+so i am just thinking 
+the user will search 1 contact right ! 
+
+so i assume we might need to use this sort of implemention 
+not get @app.get("/contact")
+
+
+i think we need 
+
+@app.get("contact/{email}")
+
+
+this is wrong it needs two slashes 
+
+@app.get("/contact/{email}")
+
+
+what i get confused is ,  
+
+how do we validate 
+
+the HTTP Request and or the API
+
+so we are just trying to send the http request 
+
+in the api we validate it 
+
+
+
+
+
