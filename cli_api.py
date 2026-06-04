@@ -82,7 +82,33 @@ def get_contact_email(email: str):
         print("invalid email")
         return
     
+
+    if email not in contact:
+        print("email not found in contacts")
+        return 
     
+    for contact_id, contact_value in contact.items():
+        if email == contact["email"]:
+            print("name:", contact_value["name"])
+            print("phone:", contact_value["phone"])
+            print("email:", contact_value["email"])
+            print()
+
+
+    return  {
+        "message": "email found",
+        "name": contact.name,
+        "phone": contact.phone,
+        "email": contact.email
+    }
+
+
+
+
+
+    
+    
+
     
 
 

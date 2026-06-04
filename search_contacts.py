@@ -18,6 +18,9 @@ def search_contacts():
 
         response.raise_for_status()
 
+
+    
+
     
     except requests.exceptions.Connection.Error:
         print("error: unable to connect to server")
@@ -37,6 +40,10 @@ def search_contacts():
         print("error: server request failed!")
         return 
     
+
+
+
+
 
 
 
