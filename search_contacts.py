@@ -18,9 +18,9 @@ def search_contacts():
 
         response.raise_for_status()
 
-
-    
-
+        data = response.json() 
+        print(data)
+        
     
     except requests.exceptions.Connection.Error:
         print("error: unable to connect to server")
