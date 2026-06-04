@@ -30,3 +30,7 @@ FastAPI reads the JSON body and creates the expense object from it, as long as c
 @app.post("/expenses")
 def add_expenses(expense: correctstructure):
 
+
+3. 
+
+we use try for the http request response 

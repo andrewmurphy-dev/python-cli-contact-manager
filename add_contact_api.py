@@ -43,8 +43,18 @@ def add_contact_api():
        
 
     try:
+        response = request.post(f"{BASE_URL}/contact",
+                                json = {"name": name, 
+                                        "email": email,
+                                        "phone": phone}
+                                        , timeout=10
+                    
+                                )
+        
 
-        response = request.post(f"{BASE_URL}/contact", timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        print(data["message"])
 
     
     
