@@ -1,0 +1,6 @@
+so here we will practice how to delete a contact !
+so each contact differs from email !
+so i feel the best thing is to ask the user for a email ! 
+so we need to implement @app.delete("/contacts")
+
+
