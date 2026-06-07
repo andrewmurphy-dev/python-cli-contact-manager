@@ -1,13 +1,8 @@
 import requests
-from storage_cli import contacts
-
 
 
 
 BASE_URL = "http://127.0.0.1:8000"
-
-
-
 
 
 
@@ -25,6 +20,7 @@ def add_contact_api():
 
     if email == "":
         print("email must not be blank!")
+        return
 
 
     phone = input("Please enter your phone number: ").strip()
@@ -56,6 +52,7 @@ def add_contact_api():
         
 
         response.raise_for_status()
+
         data = response.json()
         print(data["message"])
 
@@ -90,6 +87,9 @@ def display_contacts():
         response = requests.get(f"{BASE_URL}/Contact", Timeout=10)
 
         response.raise_for_status()
+
+        data = response.json()
+        print(data["message"])
 
         for contact_key, contact_value in contact.items():
             print("name:", contact_value["name"])
@@ -130,20 +130,30 @@ def search_contacts():
     print() 
     print("welcome to search contacts!")
 
-    email = input("enter the associated email address of the user in which you want to search: ")
+    email = input("enter the associated email address of the user in which you want to search: ").strip()
+
+    if email == "":
+        print("email cannot be blank!")
+        return 
+    
+    if "@" not in email:
+        print("email does not contain @!, try again! ")
+        return 
+    
+    if len(email) < 8:
+        print("email is too short! try again!")
+        return 
 
 
     try:
         response = requests.get(f"{BASE_URL}/contacts/{email}", timeout=10,
-                               json = {
-                                   "email": email
-                               }
-        )
+                               )
+        
 
         response.raise_for_status()
 
         data = response.json() 
-        print(data)
+        print(data["message"])
         
     
     except requests.exceptions.Connection.Error:
@@ -179,16 +189,23 @@ def delete_contact():
 
     email = input("Enter the user email you wish to delete!: ").strip()
 
+    if email == "":
+        print("email must not be blank!")
+        return
+    
+    if "@" not in email:
+        print("email is invalid!")
+        return
+
+
     try:
-        response = requests.delete(f"{BASE_URL}/contact", timeout=10, 
-                                   json = {
-                                       "email": email
-                                   })
+        response = requests.delete(f"{BASE_URL}/contact/{email}", timeout=10, 
+                                  )
         
         response.raise_for_status()
 
         data = response.json()
-        print(data)
+        print(data["message"])
 
 
     except requests.exceptions.ConnectionError:
@@ -206,6 +223,11 @@ def delete_contact():
     except requests.exception.Request.Exception:
         print("error: server request failed!")
         return 
+    
+    except ValueError:
+        print("the response of the server is a invalid JSON type!")
+        return 
+
 
 
 
@@ -218,6 +240,16 @@ def update_contact():
     while True:
         current_email = input("enter the email assoicated with the user you wish to change!: ").strip()
 
+        if current_email == "":
+            print("email is blank! try again!")
+            return
+        
+        if "@" not in current_email:
+            print("email is invalid!")
+            return
+
+
+
         print("choose from the following you wish to update!")
 
         print("press 1: email")
@@ -226,9 +258,19 @@ def update_contact():
 
         option = input("choose a option: ")
 
+        if option == "":
+            print("option must not be blank!")
+            return
+        
+        if len(option) > 1:
+            print("invalid input!")
+            return 
+
+
+
         update_data = {}
 
-        if option == 1:
+        if option == "1":
             new_email = input("enter the new email you want to change too!: ").strip()
             update_data["email"] = new_email 
 
@@ -241,7 +283,7 @@ def update_contact():
                 continue
 
 
-        elif option == 2:
+        elif option == "2":
             new_phone = input("enter the new phone you want to change too!: ").strip()
             update_data["phone"] = new_phone 
 
@@ -254,7 +296,7 @@ def update_contact():
                 continue
 
 
-        elif option == 3:
+        elif option == "3":
             new_name = input("enter the new name you want to change too!: ").strip()
             update_data["name"] = new_name
 
@@ -264,12 +306,16 @@ def update_contact():
 
 
         try:
-            response = requests.post(f"/{BASE_URL}/contacts/{current_email}",
+            response = requests.post(f"{BASE_URL}/contact/{current_email}",
                                      json=update_data, 
                                      timeout=10
                                     )
             
             response.raise_for_status()
+
+            data = response.json()
+
+            print(data["message"])
 
 
         except requests.exceptions.ConnectionError:
