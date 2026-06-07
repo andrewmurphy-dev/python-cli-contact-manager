@@ -23,3 +23,172 @@ except requests.exceptions.RequestException
 except ValueError
 
 
+
+the environment !
+so we import requests ! 
+
+
+
+massive confusion here ! 
+
+you thought you send a request to the function parameter in the route decorator ! 
+this does not happen 
+
+
+so lets understand this !
+
+you send a HTTP request to a URL 
+
+inside that request , data can be sent in different places !
+
+
+
+1. Path parameter  → data inside the URL path
+
+client
+response = requests.get(
+    f"{BASE_URL}/contacts/{email}",
+    timeout=10
+)
+
+
+no json body 
+
+used when identifying one specific thing ! 
+
+api
+
+@app.get("/contacts/{email}")
+def get_contact_by_email(email: str):
+    ...
+
+url /contacts/andy@email.com
+
+
+
+
+
+2. Query parameter → data after ? in the URL
+
+client 
+response = requests.get(
+    f"{BASE_URL}/contacts",
+    params={"email": email},
+    timeout=10
+)
+
+
+
+api 
+
+
+@app.get("/contacts")
+def search_contact(email: str):
+    ...
+
+
+url /contacts?email=andy@email.com
+
+
+no json body 
+
+
+
+params = 
+
+
+
+
+
+
+3. JSON body       → data sent as a JSON payload
+
+used when sending a full object or data package ! 
+
+
+
+client 
+
+contact = {
+    "name": name,
+    "email": email,
+    "phone": phone
+}
+
+response = requests.post(
+    f"{BASE_URL}/contacts",
+    json=contact,
+    timeout=10
+)
+
+
+the important part is json= 
+
+
+api 
+
+@app.post("/contacts")
+def upload_contact(contact: ContactData):
+    ...
+
+
+
+so whenever you send json or json with x type of character use Base model with it ! 
+
+needs to be this structure 
+
+def update_contact(current_email: str, update_data: ContactUpdate):
+
+update_data is a json
+
+current email is string 
+
+
+we use raise HTTPException!
+
+
+
+also you need to know this ! 
+
+    update_dict = update_data.model_dump(exclude_none=True)
+
+
+what is model_dump?
+
+convert the pydantic model into a normal python dictionary 
+
+
+
+
+what is exclude_none=True 
+
+this means fields with value None are left out ! 
+
+
+
+
+
+
+for delete contact , you dont send a json , you send a string !
+
+
+
+
+
+
+
+
+
+the options 
+
+if option == 1:
+
+
+this is wrong 
+
+must be a string 
+
+if option == "1"
+
+
+

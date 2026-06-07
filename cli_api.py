@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
-from storage_cli import load_manager, save_manager 
+from storage_cli import load_manager
 
 app = FastAPI() 
 
@@ -20,14 +20,10 @@ def home():
 
 
 
-#so display contacts
-#so we use get contacts 
-
 @app.get("/contact")
 def contact():
     contacts = load_manager()
     return contacts
-
 
 
 
@@ -66,7 +62,7 @@ def upload_contact(contact: ContactData):
 
 @app.post("/contact/{email}")
 def get_contact_email(email: str):
-    email = email.lower().strip(9)
+    email = email.lower().strip()
 
     if not isinstance(email, str):
         print("email is the wrong type!")
@@ -101,6 +97,56 @@ def get_contact_email(email: str):
     }
 
 
+
+@app.patch("/contact/{current_email}")
+def update_contact(current_email: str, update_data: ContactData):
+
+    final_data = update_data.model_dump(exclude_none=True)
+
+
+
+
+    if final_data == {}:
+        raise HTTPException(status_code=400, detail="no data provided!")
+        
+    
+    for characters in contact:
+        if characters["email"] == "current_email":
+
+
+            if "name" in final_data:
+                contact["name"] = update_data["name"]
+
+            if "phone" in final_data:
+                contact["phone"] = update_data["phone"]
+
+            if "email" in final_data:
+                contact["phone"] = update_data["phone"]
+
+            return {
+                "message": "update contact updated successfully!",
+                "contact": contact
+            }
+        
+        raise HTTPException(status_code=404, detail="contact not found!")
+
+
+
+
+
+
+@app.delete("/contact")
+def delete_contact(email: str):
+    for contacts in contact:
+        if contact["email"] == email:
+            contact.remove(contacts)
+
+            return {
+                "message": "Contact deleted successfully",
+                "contact": contact
+            }
+
+    raise HTTPException(status_code=404, detail="Contact not found")
 
 
 
