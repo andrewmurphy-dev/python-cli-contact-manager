@@ -1,5 +1,15 @@
-
+import requests
 from storage_cli import contacts
+
+
+
+
+BASE_URL = "http://127.0.0.1:8000"
+
+
+
+
+
 
 def add_contact_api():
     print()
@@ -23,8 +33,6 @@ def add_contact_api():
         print("phone is too short!")
         return 
     
-    #we want the number to be a string !but we want it to be digit strings !
-    #not character stirngs !
     
 
     for character in phone:
@@ -33,7 +41,7 @@ def add_contact_api():
            return 
        
 
-    contacts = {
+    contact = {
         "name": name,
         "email": email,
         "phone": phone
@@ -41,13 +49,10 @@ def add_contact_api():
        
 
     try:
-        response = request.post(f"{BASE_URL}/contact",
-                                json = {"name": name, 
-                                        "email": email,
-                                        "phone": phone}
+        response = requests.post(f"{BASE_URL}/contact",
+                                json=contact
                                         , timeout=10
-                    
-                                )
+                     )
         
 
         response.raise_for_status()
@@ -55,10 +60,29 @@ def add_contact_api():
         print(data["message"])
 
 
+    except requests.exceptions.ConnectionError:
+        print("error: there is a connection issue!")
+        return 
+    
+    except requests.exceptions.Timeout:
+        print("error: the connections to server has excceded 10 seconds!")
+        return 
+    
+    except requests.exceptions.HTTPError as error:
+        print(f"error: the server has an {error}")
+        return
+    
+    except requests.exceptions.RequestException:
+        print("error: there is a error sending request!")
+
+    except ValueError:
+        print("the server did not return valid JSON!")
+        return 
 
 
 
-#day 2
+
+
 
 def display_contacts():
 
@@ -79,27 +103,27 @@ def display_contacts():
         return 
 
 
-    except request.exceptions.Timout:
+    except requests.exceptions.Timout:
         print("error: server timout exceeded!")
         return
 
 
-    except request.exceptions.HTTPerror as error:
+    except requests.exceptions.HTTPError as error:
         print(f"error: server has returned {error}")
         return
 
 
-    except request.exceptions.RequestException:
+    except requests.exceptions.RequestException:
         print("error: server request failed!")
         return
 
 
     except ValueError:
+        print("the server did not return the valid JSON type")
+        return 
         
 
     
-
-
 
 
 def search_contacts():
@@ -139,6 +163,10 @@ def search_contacts():
     except requests.exception.Request.Exception:
         print("error: server request failed!")
         return 
+    
+    except ValueError:
+        print("server did not send the valid JSON type")
+        return
 
 
 
@@ -182,81 +210,88 @@ def delete_contact():
 
 
 
-
-
-
-
-
-
-#update contact
 def update_contact():
-    print("welcome to update contact")
-    email = input("type the email address associated with user: ")
-    for name, value in contacts.items():
-        if email == value["email"]:
-            print("username:\t", name)
-            print("email:\t", value["email"])
-            print("phone:\t", value["phone"])
+    print()
+    print("welcome to update contact!")
 
 
+    while True:
+        current_email = input("enter the email assoicated with the user you wish to change!: ").strip()
 
-            #choosing option
+        print("choose from the following you wish to update!")
 
-            print("what do you want to update?\n")
-            print("press 1: \tto update username")
-            print("press 2: \tto update email")
-            print("press 3: \tto update phone")
+        print("press 1: email")
+        print("press 2: phone")
+        print("press 3: name")
 
-            choice = input("please enter your choice: ")
+        option = input("choose a option: ")
 
-            if choice == "1":
-                new_username = input("please enter new username: ")
-                contacts[new_username] = contacts[name]
-                del contacts[name]
-                print("contact updated")
+        update_data = {}
 
-            elif choice == "":
-                print("menu: option cannot be blank! try again !")
-                
-            else:
-                print("invalid option")
+        if option == 1:
+            new_email = input("enter the new email you want to change too!: ").strip()
+            update_data["email"] = new_email 
 
+            if new_email == "":
+                print("email cannot be blank!")
+                continue
 
-
-             if choice == "2":
-                new_email = input("please enter new email: ").lower().strip()
-                #this follows a different structure
-                value["email"] = new_email
-                print("email updated")
+            elif "@" not in new_email:
+                print("email is invalid!")
+                continue
 
 
-            elif choice == "":
-                print("menu: option cannot be blank! try again !")
+        elif option == 2:
+            new_phone = input("enter the new phone you want to change too!: ").strip()
+            update_data["phone"] = new_phone 
 
-            else:
-                print("invalid option")
+            if new_phone == "":
+                print("phone cannot be blank!")
+                continue
 
-
-
-            if choice == "3":
-                new_phone = input("please enter new phone number: ").lower().strip()
-                value["phone"] = new_phone
-                print("phone updated")
-
-            elif choice == "":
-                print("menu: option cannot be blank! try again !")
-
-            else:
-                print("invalid choice")
-            break
-
-    
+            elif len(new_phone) < 8:
+                print("phone is too short")
+                continue
 
 
+        elif option == 3:
+            new_name = input("enter the new name you want to change too!: ").strip()
+            update_data["name"] = new_name
+
+            if new_name == "":
+                print("new name cannot be blank!")
+                continue
 
 
-    else:
-        print("not found")
+        try:
+            response = requests.post(f"/{BASE_URL}/contacts/{current_email}",
+                                     json=update_data, 
+                                     timeout=10
+                                    )
+            
+            response.raise_for_status()
+
+
+        except requests.exceptions.ConnectionError:
+            print("error: unale to connect to server!")
+            return 
+        
+        except requests.exceptions.HTTPError as error:
+            print(f"error: there is an server {error}")
+            return
+        
+
+        except requests.exceptions.Timeout:
+            print("error: server has exceeded timeout!")
+
+        except requests.exceptions.RequestException:
+            print("error: server request failed!")
+            return 
+        
+        except ValueError:
+            print("the response of the server is a invalid JSON type!")
+            return 
+
 
 
 

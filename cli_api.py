@@ -13,8 +13,6 @@ class ContactData(BaseModel):
 
 
 
-BASE_URL = "http://127.0.0.1:8000"
-
 @app.get("/")
 def home():
     return {"message": "FastAPI is working!"}
