@@ -1,0 +1,25 @@
+so day 7 
+
+
+so you got confused which validation we do more of for http request sending vs endpoint / route decorator ! 
+
+so its not like that ! 
+
+it depends on the method ! 
+
+so POST method will have different validation compared to GET method 
+
+
+
+seems like this follows a general blueprint!
+
+requests.get() 
+response.raise_for_status() 
+response.json() 
+except requests.exceptions.ConnectionError 
+except requests.exceptions.Timeout 
+except requests.exceptions.HTTPError 
+except requests.exceptions.RequestException 
+except ValueError
+
+

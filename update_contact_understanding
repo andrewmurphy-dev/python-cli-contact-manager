@@ -1,0 +1,36 @@
+so here we will focus on updating the contact ! 
+
+so how do we update a dictionary ?
+
+so its easy ! 
+
+contact = {
+    "name": "Andy",
+    "email": "andy@example.com",
+    "phone": "12345"
+}
+
+new_name = input("Enter the new name: ")
+
+contact["name"] = new_name
+
+print(contact)
+
+
+
+so we send the updated data to the api ! 
+
+so the format is 
+
+email , str , dict 
+
+
+
+patch router decorator 
+
+@app.patch("/contacts/{current_email}")
+
+
+patch method means update existing resource 
+
+resource is the contact ! 
